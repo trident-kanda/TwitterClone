@@ -6,11 +6,14 @@ try {
     $sql = 
     "SELECT DISTINCT id,name, body, date
     FROM tweets
-    INNER JOIN follow ON tweets.uid = follow.followuid
-    WHERE follow.uid = '".$uid."'
-    OR tweets.uid = '".$uid."'
-    ORDER BY DATE DESC
-    LIMIT 30";
+    INNER JOIN follow ON tweets.uid = follow.followuid 
+	WHERE follow.uid = '".$uid."'
+UNION
+    SELECT DISTINCT id,name, body, date
+	FROM tweets
+	WHERE tweets.uid = '".$uid."'
+	ORDER BY date DESC
+	LIMIT 30";
     $res = $dbh->query($sql);
     foreach($res as $value){
         $data[] = $value;
