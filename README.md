@@ -1,4 +1,4 @@
-# TwitterClome
+# TwitterClone
 
 ## 概要
 
